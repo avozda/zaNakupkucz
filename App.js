@@ -2,26 +2,32 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import React from "react";
 import { NativeBaseProvider, Pressable, Image } from "native-base";
+//Redux
+import {Provider} from "react-redux"
+import store from "./store"
+
 
 export default function App() {
   return (
     <NativeBaseProvider>
-       <View style={styles.container}>
-      <View style={styles.topContainer}>
-        <View style={styles.metaContainer}>
-          <View>
-            <Text style={styles.timings}>Today @ 9PM</Text>
-            <Text style={styles.description}>Let's talk about avatar!</Text>
+      <Provider store={store}>
+        <View style={styles.container}>
+        <View style={styles.topContainer}>
+          <View style={styles.metaContainer}>
+            <View>
+              <Text style={styles.timings}>Today @ 9PM</Text>
+              <Text style={styles.description}>Let's talk about avatar!</Text>
+            </View>
+            <Pressable style={styles.button}>
+              <Text style={styles.buttonText}>Remind me</Text>
+            </Pressable>
           </View>
-          <Pressable style={styles.button}>
-            <Text style={styles.buttonText}>Remind me</Text>
-          </Pressable>
+          <Image source={{
+          uri: 'https://media.vanityfair.com/photos/5ba12e6d42b9d16f4545aa19/3:2/w_1998,h_1332,c_limit/t-Avatar-The-Last-Airbender-Live-Action.jpg'
+        }} style={styles.avatar} alt="avatar" />
         </View>
-        <Image source={{
-        uri: 'https://media.vanityfair.com/photos/5ba12e6d42b9d16f4545aa19/3:2/w_1998,h_1332,c_limit/t-Avatar-The-Last-Airbender-Live-Action.jpg'
-      }} style={styles.avatar} alt="avatar" />
       </View>
-    </View>
+      </Provider>
     </NativeBaseProvider>
   );
 }
